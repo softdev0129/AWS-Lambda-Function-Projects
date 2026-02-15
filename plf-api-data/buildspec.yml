@@ -1,0 +1,87 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_ACCOUNT_ID: "110847517401"  # Your AWS account ID
+    AWS_DEFAULT_REGION: "eu-west-1"  # Your desired AWS region
+    IMAGE_REPO_NAME: "plf_data_api_lambda"  # Your ECR repository name
+    LAMBDA_FUNCTION_NAME: "plf_data_api_lambda"  # Replace with your Lambda function name
+    DEV_FIREBASE_CREDENTIALS: '{ "type": "service_account", "project_id": "flp-app-93d33", "private_key_id": "d1f1d53101900760ff0b28938ed15095a4724070", "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/6rhRgs/e2Cxg\ns4IbGtSpzR868/B+B7n4Ch9S+xEHRdP7vPzBLtdEvmY+u2GLs0rsd9BYWbLVl0Rp\nbaFHS/yxQ8L/OqOEiuoODnoiuop4r+mkqhoZUy2kP7T0yVe9EXItFEl0PJC4Ifcc\nQLVs95rwlqysOGvHBpjTyqNC599LZeIw0zkwfTXMjGE4zMsbs97iWcL+LuJ2J+Au\nW4QT7SAhAa+9THNyDlfxxDCTiUGslfz2/7N0DPDx7IAbL1UFsGVDOpqGspsT24KH\nGzMjEfgxrHbNc+8VQpi8uYPyKmNHp5Z7vpaVMXir1u3kYlKNXsRp8k31/gyKtAXB\np87mfsTjAgMBAAECggEAXRUwqeQ7AzgxKgPWzmOwktz40USgt9fyhJIQSFSamT7u\nhrJOmzonUeHRQIrs0G+5HsEsDbYPzZXtKf9w0l5SJP4bNWSRC8e+puuxpGd6oveb\naHDScMcNo5T8pR+EzSCJksC8scJwZMagjpT6Cex8O0WxYWSKLcGO3WZy0hAZlvzu\ndnq8tsLl7mKkOYiuSckm0G4RV6M2lNTHWNFIc1UyvKXNEKQDvnnbq38g5e2ioliX\nvzGKD13LU1HJUJrnCnTYmZTC4yQXAJwvEEEKIDNb/OPraDqTHx/nR17VGYtoQfrr\nSMYKMv1t/IHuj1ejEA96fbED1GLK7alLHVnRBZqbKQKBgQD5hPEX7+kri80P3AZX\ndvLhfGzgbPiBlC832NE2mkV4r4Bpfxj8IE/5udVm01yZ1E/DA26yygo3VI5EZ/Tm\nugT/2VJFeYcPEBRxlPXeDzjD8rm/hXt/49UDkMxiUBXu2TOP92V6WceD/SWiEb9e\nWdDKe5c7l7pKj4g/FhF9f3Y1aQKBgQDE5sdWbEsE8n8mGKlY0y0S/Esjw7uobXy9\nyuPgzR1SlRooHUr3wqThfdIW5qWYEl0z8vfXu1TU0b6hm+Dz41WVSio1P3+Bhe2v\nvOGys0Og7dPfLJJg7q2zAiqyyVufi0OXmnstg+FeYlX1T7i1MxAfzGGK8guxc4Ma\nwAUiZLqiawKBgQCWmRF2tBtUaA19a/v74FQZmiKQldSrSMfy+g7T2OrjO3HSup5W\n1h3PCMVvSVSTl9wIRNMUX/MokAVJ7kCW3WFVFlKckgvdIIRmRVTcEO3e/mnz2Vm/\nx7/yZfulvtZuEXQYiWYbIYLU+/4xwmpxRN5Kx6twkVQj2luOUACAcWTkOQKBgD0/\nlE47zXIyhH6zOSpaNjErravoXN1dgWoATLZG15Iyszo7MnCzaVqDKvDYujX9sGRS\ndenzacXxoJzgwi7bTmnr8gkyQVVm9bKuzH4r6SOMF1XapYXleL6wM9v9arTMOzBT\na3GTDm2vpRFzxP8IbUGW79iqxhxi1CtkA7TZJH0VAoGABI2R8tpWeCgcGuO8G/JP\nWukKAa8PtK/nKy1A1dH5SEdlg+4PqR0taxyHtH1/6rxVg6HOHl9Z9UMGILgVPp2r\nDmlusLONZgoNNp6j4lHwkHFz1+cHVum+03+/wA38HFXUmTfvCX432bqTyvJi/Fna\nqNHKkeX24sAxK4xbM/t6STg=\n-----END PRIVATE KEY-----\n", "client_email": "firebase-adminsdk-ztyaw@flp-app-93d33.iam.gserviceaccount.com", "client_id": "103972125751531977422", "auth_uri": "https://accounts.google.com/o/oauth2/auth", "token_uri": "https://oauth2.googleapis.com/token", "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs", "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ztyaw%40flp-app-93d33.iam.gserviceaccount.com", "universe_domain": "googleapis.com" }'
+    PROD_FIREBASE_CREDENTIALS: '{ "type": "service_account", "project_id": "plf-app-cfeaa", "private_key_id": "4d0fd896003fa30f140b80b38a38611d3fcd4945", "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDKPQ8bWdqJ7GRi\n35Yp7QA2LoDI3idaXZ+ARe0Rp+qAW/O2qegphqnh+JFxweLh5otCKtjqKF4zLTq4\numlbtfUrwy6W5LkTYRpPU6z+C9b2Rix7+Nifsa9dK32tlgpKV85e9ORjCMEeiaoM\nY5JSV8hX7r/KjQrr2Y8khqOncRz/Adn+uB3VVZ3Actq9sG67n5hcPwvgxEBfEzWc\nO2L4PRNcJEt3ZwVtzCFTzYDas102JkhainXrUbCc8qXC7+6Wlt22oiLzE/7+mk34\ng/VXuuYBU6NsLIKs5atdTdqUXbmhbrHN9YuuDatqqLgsG463iOuD2GoZQ6GPgQB/\n7mS6tlejAgMBAAECggEACqvCGk1ZbKGegmENyVSKCFHX1cFzDh+WhOwroBzeELvJ\nVkAM0fQbDqNQ+VGjqQvDGVCtdV1/6u9eA9VCLeah8xcvZCLZaR5chwcBP75cL05w\nlnIA7BwyBpZ+4SPjkxyi9Puy+U7C8duNr22pkNK07X7Ze9SJWPx3wxOfmvwq7YGR\narhLd1c2BsCN6NKv4t5SC5+MfFoYzJRuKtLEmR7q8qrWfZM1Ybeg4+8NRYN1fJSU\n4F3UdtQo4ZQYX+BGcTjNyOqE7kCbIRMC8PgPnw1eqrkYNU532Vgq/JEcFzN/izs3\nMrQd3DhsnXHNGh9IgGIQwRfJyRV30pkqU+VQjn/CgQKBgQD2SysAo3YZjY+hy3bk\nUES/phm4AyPn8V4Tu+7/CPLncTaJiG0QbatCWvtl+g/I6NLgoJA4hi1T56MELhzX\n0/rc/xctN/FS4tbEgwATWTsCzTx8RUGPfC1CmPtWIo6VkkTYWJZ+j7XOhYDWFrz6\neyWM9bwHXta4INZ9sE+5sNVsoQKBgQDSNWxg4ufa0WtkFBY/1Cr0Z0IxFBH44M8i\n0d36hcHNClV2r+yPglk84D8jRnOuW67MyG9xnMRwa4DwgDIfFsPBz6eMGvdV9bOL\niIqAfJNN8xvSbjvaxh03HI94bbGfC43Cg8i54emkfji4x5uuw4b33LEfl2PQG9N0\nqqFyo/z5wwKBgD+VQkHE8V1BbX4wf74LduQfJm6Z6PAdINNpZhbTIZpcYN76qGVg\nWqEjydkWyHJuoNo6uWDOSu9pUm1m1i1l3VKmTD5xPczPIPDUfPWByLk9cMsIOhen\n0CtsQR6Ih1TX0QwlOpzrztzFHHCoqBrmJdiRK/yfIEGiwJzsInjmzQJhAoGBAM9W\nhnniFZMNsQFblr6KhXvgRbem9jsncugDXRH30LpvkPCqgYjjpyWWgnBG01+NaxLu\nOI41dMT2JI4TxFxJ1fha3AYjqwaMfPYKTaKCPcFLI4wh0sPtWW+8qf69I8+eU8si\ntWAzZoMrRMNtjy+ICJ5+fe6NIpRofd+7Vdd/zMyFAoGAOoi5VK5U5rVx0JjVCMPL\nGzHuj7Y2Y5q1GQsXxElBWdcFzZoxdNiz8xShQg+5/q0v1fd9uQe/l6pwz0hak2wX\nT7uAePLwELtY4Jg0n5GhNN/X8wGONNyez19MCuSppDqFiCqnO6vyOPJz9jdIEKI4\nya9SCcnXydYrpWQxLLAU3m8=\n-----END PRIVATE KEY-----\n", "client_email": "firebase-adminsdk-cm1q6@plf-app-cfeaa.iam.gserviceaccount.com", "client_id": "106914059382735456922", "auth_uri": "https://accounts.google.com/o/oauth2/auth",  "token_uri": "https://oauth2.googleapis.com/token",  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-cm1q6%40plf-app-cfeaa.iam.gserviceaccount.com",  "universe_domain": "googleapis.com" }'
+#    PROD_FIREBASE_CREDENTIALS: '{ "type": "service_account", "project_id": "plf-app-cfeaa", "private_key_id": "4d0fd896003fa30f140b80b38a38611d3fcd4945", "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDKPQ8bWdqJ7GRi\n35Yp7QA2LoDI3idaXZ+ARe0Rp+qAW/O2qegphqnh+JFxweLh5otCKtjqKF4zLTq4\numlbtfUrwy6W5LkTYRpPU6z+C9b2Rix7+Nifsa9dK32tlgpKV85e9ORjCMEeiaoM\nY5JSV8hX7r/KjQrr2Y8khqOncRz/Adn+uB3VVZ3Actq9sG67n5hcPwvgxEBfEzWc\nO2L4PRNcJEt3ZwVtzCFTzYDas102JkhainXrUbCc8qXC7+6Wlt22oiLzE/7+mk34\ng/VXuuYBU6NsLIKs5atdTdqUXbmhbrHN9YuuDatqqLgsG463iOuD2GoZQ6GPgQB/\n7mS6tlejAgMBAAECggEACqvCGk1ZbKGegmENyVSKCFHX1cFzDh+WhOwroBzeELvJ\nVkAM0fQbDqNQ+VGjqQvDGVCtdV1/6u9eA9VCLeah8xcvZCLZaR5chwcBP75cL05w\nlnIA7BwyBpZ+4SPjkxyi9Puy+U7C8duNr22pkNK07X7Ze9SJWPx3wxOfmvwq7YGR\narhLd1c2BsCN6NKv4t5SC5+MfFoYzJRuKtLEmR7q8qrWfZM1Ybeg4+8NRYN1fJSU\n4F3UdtQo4ZQYX+BGcTjNyOqE7kCbIRMC8PgPnw1eqrkYNU532Vgq/JEcFzN/izs3\nMrQd3DhsnXHNGh9IgGIQwRfJyRV30pkqU+VQjn/CgQKBgQD2SysAo3YZjY+hy3bk\nUES/phm4AyPn8V4Tu+7/CPLncTaJiG0QbatCWvtl+g/I6NLgoJA4hi1T56MELhzX\n0/rc/xctN/FS4tbEgwATWTsCzTx8RUGPfC1CmPtWIo6VkkTYWJZ+j7XOhYDWFrz6\neyWM9bwHXta4INZ9sE+5sNVsoQKBgQDSNWxg4ufa0WtkFBY/1Cr0Z0IxFBH44M8i\n0d36hcHNClV2r+yPglk84D8jRnOuW67MyG9xnMRwa4DwgDIfFsPBz6eMGvdV9bOL\niIqAfJNN8xvSbjvaxh03HI94bbGfC43Cg8i54emkfji4x5uuw4b33LEfl2PQG9N0\nqqFyo/z5wwKBgD+VQkHE8V1BbX4wf74LduQfJm6Z6PAdINNpZhbTIZpcYN76qGVg\nWqEjydkWyHJuoNo6uWDOSu9pUm1m1i1l3VKmTD5xPczPIPDUfPWByLk9cMsIOhen\n0CtsQR6Ih1TX0QwlOpzrztzFHHCoqBrmJdiRK/yfIEGiwJzsInjmzQJhAoGBAM9W\nhnniFZMNsQFblr6KhXvgRbem9jsncugDXRH30LpvkPCqgYjjpyWWgnBG01+NaxLu\nOI41dMT2JI4TxFxJ1fha3AYjqwaMfPYKTaKCPcFLI4wh0sPtWW+8qf69I8+eU8si\ntWAzZoMrRMNtjy+ICJ5+fe6NIpRofd+7Vdd/zMyFAoGAOoi5VK5U5rVx0JjVCMPL\nGzHuj7Y2Y5q1GQsXxElBWdcFzZoxdNiz8xShQg+5/q0v1fd9uQe/l6pwz0hak2wX\nT7uAePLwELtY4Jg0n5GhNN/X8wGONNyez19MCuSppDqFiCqnO6vyOPJz9fHnDIAH\nQQZd5lA2GEglcZ8D37sZRTw=\n-----END PRIVATE KEY-----\n", "client_email": "firebase-adminsdk-evvfc@plf-app-cfeaa.iam.gserviceaccount.com", "client_id": "118118522648998784283", "auth_uri": "https://accounts.google.com/o/oauth2/auth", "token_uri": "https://oauth2.googleapis.com/token", "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs", "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-evvfc%40plf-app-cfeaa.iam.gserviceaccount.com", "universe_domain": "googleapis.com" }'
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies..."
+      - apt-get update -y
+      - apt-get install -y jq
+      - echo "Dependencies installed."
+
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - echo "Using build ID as Docker image tag"
+      - BUILD_ID=$(date +%s)  # Use current timestamp as a unique tag
+      - echo "Using build ID $BUILD_ID as Docker image tag"
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build --no-cache -t $IMAGE_REPO_NAME:$BUILD_ID .
+      - docker tag $IMAGE_REPO_NAME:$BUILD_ID $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$BUILD_ID
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$BUILD_ID
+
+      # Hardcoded assignment of Firebase credentials based on alias name
+      - |
+        if [ "$LAMBDA_ALIAS_NAME" = "dev" ]; then
+          FIREBASE_CREDENTIALS="$DEV_FIREBASE_CREDENTIALS"
+        else
+          FIREBASE_CREDENTIALS="$PROD_FIREBASE_CREDENTIALS"
+        fi
+      # Update the environment variables for the specific version
+      # JSON encode the environment variables
+      - |
+        ENV_VARS_JSON=$(jq -n \
+          --arg FIREBASE_API_KEY "$FIREBASE_API_KEY" \
+          --arg FIREBASE_CREDENTIALS "$FIREBASE_CREDENTIALS" \
+          --arg RDS_DB_NAME "$RDS_DB_NAME" \
+          --arg RDS_ENDPOINT "$RDS_ENDPOINT" \
+          --arg RDS_PASSWORD "$RDS_PASSWORD" \
+          --arg RDS_USERNAME "$RDS_USERNAME" \
+          --arg RDS_PLF_DB_NAME "$RDS_PLF_DB_NAME" \
+          '{Variables: {FIREBASE_API_KEY: $FIREBASE_API_KEY, FIREBASE_CREDENTIALS: $FIREBASE_CREDENTIALS, RDS_DB_NAME: $RDS_DB_NAME, RDS_ENDPOINT: $RDS_ENDPOINT, RDS_PASSWORD: $RDS_PASSWORD, RDS_USERNAME: $RDS_USERNAME, RDS_PLF_DB_NAME: $RDS_PLF_DB_NAME}}' \
+          | jq -c .)
+      - aws lambda update-function-configuration --function-name $LAMBDA_FUNCTION_NAME --environment "$ENV_VARS_JSON"
+
+      - echo "Waiting for configuration update to propagate..."
+      - sleep 30
+
+      - echo "Updating Lambda function code..."
+      - aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --image-uri $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$BUILD_ID
+
+      - echo "Waiting for code update to propagate..."
+      - sleep 30
+
+      - echo "Publishing new version of the Lambda function..."
+      - |
+        for i in {1..5}; do
+          LATEST_VERSION=$(aws lambda publish-version --function-name $LAMBDA_FUNCTION_NAME --description "Alias $LAMBDA_ALIAS_NAME" --query 'Version' --output text 2>&1)
+          if [ $? -eq 0 ]; then
+            echo "Published new Lambda version $LATEST_VERSION"
+            break
+          else
+            echo "Publish failed, retrying in $((2**i)) seconds..."
+            sleep $((2**i))
+          fi
+        done
+
+      - echo "Updating Lambda function alias $LAMBDA_ALIAS_NAME to point to version $LATEST_VERSION..."
+      - aws lambda update-alias --function-name $LAMBDA_FUNCTION_NAME --name $LAMBDA_ALIAS_NAME --function-version $LATEST_VERSION

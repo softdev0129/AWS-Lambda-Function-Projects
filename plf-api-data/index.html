@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudWatch Logs Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #log-container {
+            white-space: pre-wrap;
+            background-color: #f0f0f0;
+            padding: 10px;
+            max-height: 500px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <h1>CloudWatch Logs Viewer</h1>
+    <label for="logGroup">Select Log Group:</label>
+    <select id="logGroup">
+        <option value="/aws/lambda/plf_customer_api_lambda">/aws/lambda/plf_customer_api_lambda</option>
+        <option value="/aws/lambda/plf_data_api_lambda">/aws/lambda/plf_data_api_lambda</option>
+    </select>
+    <button onclick="fetchLogs()">Fetch Logs</button>
+    <div id="log-container"></div>
+
+    <script>
+        async function fetchLogs() {
+            const logGroupName = document.getElementById('logGroup').value;
+            const response = await fetch(`/logs?logGroupName=${logGroupName}`);
+            const logs = await response.json();
+            document.getElementById('log-container').innerText = logs.join('\\n');
+        }
+
+        setInterval(fetchLogs, 5000); // Refresh logs every 5 seconds
+    </script>
+</body>
+</html>

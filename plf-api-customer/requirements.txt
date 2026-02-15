@@ -1,0 +1,11 @@
+firebase-admin==6.0.1
+pg8000==1.22.0
+requests
+sendgrid==6.8.3
+stripe==2.64.0
+markdown==3.3.4
+urllib3==1.26.6
+passlib==1.7.4
+google-auth==1.35.0
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.4.6

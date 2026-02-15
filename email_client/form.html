@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Client</title>
+    <link rel="stylesheet" href="/v1/styles.css">
+    <script src="https://alcdn.msauth.net/browser/2.31.0/js/msal-browser.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Email Client</h1>
+
+    <!-- Google Sign-In Button -->
+    <button id="googleLoginBtn" style="margin-top: 10px;">Sign in with Google</button>
+    <button id="outlookLoginBtn" style="margin-top: 10px;">Sign in with Outlook</button>
+    <!-- Existing Forms (SMTP Configuration, Send Email, etc.) -->
+    <form id="smtpForm">
+        <h2>SMTP Configuration</h2>
+        <label for="smtpHost">SMTP Host</label>
+        <input type="text" id="smtpHost" placeholder="SMTP Host" required/>
+
+        <label for="smtpPort">SMTP Port</label>
+        <input type="number" id="smtpPort" placeholder="SMTP Port" required/>
+
+        <input type="checkbox" id="smtpSecure"/>
+        <label for="smtpSecure">Secure (SSL)</label>
+
+        <label for="smtpUser" style="display: block">Username</label>
+        <input type="text" id="smtpUser" placeholder="Username" required/>
+
+        <label for="smtpPass">Password</label>
+        <input type="password" id="smtpPass" placeholder="Password" required/>
+
+        <button type="submit">Save SMTP Configuration</button>
+    </form>
+
+    <form id="emailForm">
+        <h2>Send Email</h2>
+        <label for="from">From</label>
+        <input type="text" id="from" placeholder="From" required/>
+
+        <label for="to">To</label>
+        <input type="text" id="to" placeholder="To" required/>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="Subject" required/>
+
+        <label for="text">Text</label>
+        <textarea id="text" placeholder="Text" required></textarea>
+
+        <label for="html">HTML (optional)</label>
+        <textarea id="html" placeholder="HTML (optional)"></textarea>
+
+        <button type="submit">Send Email</button>
+        <button type="button" onclick="sendEmailOAuth('gmail')">Send Email via Gmail</button>
+        <button type="button" onclick="sendEmailOAuth('Outlook365')">Send Email via Outlook</button>
+        <button type="button" id="draft_button" onclick="saveToDraft()">Save Email as Draft</button>
+    </form>
+
+    <form id="retrieveForm">
+        <h2>Retrieve Email</h2>
+        <label for="uri">URI: </label>
+        <input type="text" id="uri" placeholder="URI" value="retrieve-emails"/>
+        <label for="mail_path">Path: </label>
+        <input type="text" id="mail_path" placeholder="Mail Path"/>
+        <button type="submit" id="retrieveEmails">Retrieve Emails</button>
+    </form>
+
+    <form id="moveForm">
+        <h2>Move Email To Trash</h2>
+        <label for="path">Path: </label>
+        <input type="text" id="path" placeholder="Path" value="INBOX"/>
+        <label for="uid">UID: </label>
+        <input type="text" id="uid" placeholder="UID"/>
+        <button type="submit" id="moveToTrash">Move To Trash</button>
+    </form>
+
+    <form id="deleteForm">
+        <h2>Delete Email From Trash</h2>
+        <label for="t_uid">UID: </label>
+        <input type="text" id="t_uid" placeholder="UID"/>
+        <button type="submit" id="deleteEmailFromTrash">Delete Email</button>
+    </form>
+
+    <h2>Message</h2>
+    <p id="message"></p>
+
+    <h2>Retrieved Emails</h2>
+    <ul id="emailList"></ul>
+</div>
+<!-- Existing script references -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="/v1/script.js"></script>
+</body>
+</html>

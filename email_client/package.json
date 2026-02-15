@@ -1,0 +1,16 @@
+{
+  "name": "smtp_email-lambda",
+  "version": "1.0.0",
+  "description": "This AWS Lambda function project efficiently manages email operations, enabling users to send, retrieve, delete, and save emails using SMTP and IMAP protocols.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "imapflow": "^1.0.164",
+    "nodemailer": "^6.7.2"
+  }
+}
