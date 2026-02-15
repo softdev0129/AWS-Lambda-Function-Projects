@@ -2,7 +2,7 @@
 
 **AWS Lambda • Python | Node.js • Automation & Data Systems**
 
-This repository contains multiple AWS Lambda (Python) backend projects
+This repository contains multiple AWS Lambda (Python | Node.js) backend projects
 focused on automation, scraping, SaaS APIs, job processing, and
 AI-assisted workflows.
 
